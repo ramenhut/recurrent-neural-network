@@ -61,7 +61,7 @@ class DataSet:
 
 class RecurrentNetwork:
   learning_rate = 1e-1
-  batch_size = 25
+  batch_size = 100
   epoch_count = 10
 
   def __init__(self, vocab, hidden_size):
@@ -84,6 +84,7 @@ class RecurrentNetwork:
     '''Feeds one input vector through our model and returns the updated state and probabilities.'''
     h = np.tanh(np.dot(self._Wxh, x) + np.dot(self._Whh, hp) + self._bh)
     y = np.dot(self._Why, h) + self._by
+    y = y - y.max() # prevent overflow
     p = np.exp(y) / np.sum(np.exp(y))
     return (h, y, p)
     
@@ -168,5 +169,5 @@ class RecurrentNetwork:
     return output
 
 data = DataSet('shakes')
-network = RecurrentNetwork(data.vocab, 100)
+network = RecurrentNetwork(data.vocab, 50)
 network.train(data)

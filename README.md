@@ -3,6 +3,10 @@ A simple implementation of a recurrent neural network designed to learn the writ
 
     python rnn.py
 
+A Keras based implementation is also provided, which may be run using the following command:
+
+    python rnn-keras.py
+
 When training with the complete works of Shakespeare, this network produces results such as the following, after a few epochs:
 
     Two are pardoned a life, that every clap is his church. 
